@@ -1,0 +1,34 @@
+parameters:
+    level: 8
+    paths:
+        - config
+        - migrations
+        - public
+        - src
+        - tests
+    checkGenericClassInNonGenericObjectType: false
+    ignoreErrors:
+        -
+           message: '#Property [a-zA-Z\\_]+::\$[a-zA-Z\\_]+ type has no value type specified in iterable type array\.#'
+           paths:
+               - src/Enraged/Xenomorph/Infrastructure/HTTP/Client/InMemoryHttpClientResponse.php
+        -
+           message: '#Method [a-zA-Z\\_]+::[a-zA-Z_]+\(\) has parameter [\$a-zA-Z_]+ with no value type specified in iterable type array\.#'
+           paths:
+               - src/Enraged/Xenomorph/Infrastructure/HTTP/Client/HttpClient.php
+               - src/Enraged/Xenomorph/Infrastructure/HTTP/Client/InMemoryHttpClient.php
+               - src/Enraged/Xenomorph/Infrastructure/HTTP/Client/InMemoryHttpClientInterface.php
+               - src/Enraged/Xenomorph/Infrastructure/HTTP/Client/InMemoryHttpClientResponse.php
+        -
+           message: '#Method [a-zA-Z\\_]+::[a-zA-Z_]+\(\) return type has no value type specified in iterable type array\.#'
+           paths:
+               - src/Enraged/Xenomorph/Infrastructure/HTTP/Client/InMemoryHttpClientResponse.php
+        -
+           message: '#Method [a-zA-Z\\_]+::[\da-zA-Z_]+\(\) has no return type specified\.#'
+           paths:
+               - src/Enraged/Xenomorph/Infrastructure/HTTP/Client/InMemoryHttpClient.php
+               - tests
+        -
+           message: '#Cannot call method [a-zA-Z\\_]+\(\) on object\|null\.#'
+           paths:
+               - tests

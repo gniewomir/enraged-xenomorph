@@ -1,0 +1,29 @@
+version: "3.3"
+services:
+  application:
+    container_name: application
+    env_file:
+      - .env
+    image: gniewomir:xenomorph-dev
+    volumes:
+      - ./:/app
+    ports:
+      - "3160:3160"
+
+###> doctrine/doctrine-bundle ###
+  database:
+    container_name: database
+    image: postgres:${POSTGRES_VERSION:-13}-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-xenomorph}
+      # You should definitely change the password in production
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ChangeMe}
+      POSTGRES_USER: ${POSTGRES_USER:-symfony}
+    volumes:
+      - app-boilerplate-xenomorph-postgresql-data:/var/lib/postgresql/data:rw
+###< doctrine/doctrine-bundle ###
+
+volumes:
+###> doctrine/doctrine-bundle ###
+  app-boilerplate-xenomorph-postgresql-data:
+###< doctrine/doctrine-bundle ###

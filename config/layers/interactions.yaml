@@ -1,0 +1,15 @@
+services:
+
+    interactions:
+        namespace: Enraged\Xenomorph\Interactions\
+        resource: '%kernel.project_dir%/src/Enraged/Xenomorph/Interactions/'
+        autowire: true
+        autoconfigure: true
+        exclude:
+            - '%kernel.project_dir%/src/Enraged/Xenomorph/Interactions/Assertion/'
+            - '%kernel.project_dir%/src/Enraged/Xenomorph/Interactions/Exception/'
+
+    # WEB
+    Enraged\Xenomorph\Interactions\Web\Controller\:
+        resource: '%kernel.project_dir%/src/Enraged/Xenomorph/Interactions/Web/Controller/'
+        tags: ['controller.service_arguments']

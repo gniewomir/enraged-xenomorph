@@ -1,0 +1,181 @@
+paths:
+    - ./src
+layers:
+    -
+        # Make DateTime a separate layer to ensure that only InfrastructureCalendar has access to it.
+        # It gives us ability to change time when testing with predictable results
+        name: DateTime
+        collectors:
+            - type: bool
+              must:
+                  -
+                      type: className
+                      regex: DateTime
+                  -
+                      type: className
+                      regex: DateTimeImmutable
+    -
+        # Forbid using UUID other than V4 (random) unless explicitly allowed
+        name: NonV4TypeUuid
+        collectors:
+            - type: bool
+              must:
+                - type: className
+                  regex: Symfony\\Component\\Uid\\Uuid.*
+              must_not:
+                - type: className
+                  regex: Symfony\\Component\\Uid\\UuidV4
+    -
+        name: Interactions
+        collectors:
+            - type: className
+              regex: Enraged\\Xenomorph\\Interactions\\.*
+    -
+        name: Application
+        collectors:
+            - type: bool
+              must:
+                  - type: className
+                    regex: Enraged\\Xenomorph\\Application\\.*
+              must_not:
+                  - type: className
+                    regex: Enraged\\Xenomorph\\Application\\Command\\.*Command
+                  - type: className
+                    regex: Enraged\\Xenomorph\\Application\\CommandHandler\\.*Handler
+                  - type: className
+                    regex: Enraged\\Xenomorph\\Application\\Query\\.*Query
+                  - type: className
+                    regex: Enraged\\Xenomorph\\Application\\Query\\.*Model
+                  - type: className
+                    regex: Enraged\\Xenomorph\\Application\\QueryResult\\.*Result
+                  - type: className
+                    regex: Enraged\\Xenomorph\\Application\\Infrastructure\\.*Interface
+    -
+        name: ApplicationInfrastructureInterfaces
+        collectors:
+            - type: className
+              regex: Enraged\\Xenomorph\\Application\\Infrastructure\\.*Interface
+    -
+        name: ApplicationCommand
+        collectors:
+            - type: className
+              regex: Enraged\\Xenomorph\\Application\\Command\\.*Command
+    -
+        name: ApplicationCommandHandlers
+        collectors:
+            - type: className
+              regex: Enraged\\Xenomorph\\Application\\CommandHandler\\.*Handler
+    -
+        name: ApplicationQuery
+        collectors:
+            - type: className
+              regex: Enraged\\Xenomorph\\Application\\Query\\.*Query
+    -
+        name: ApplicationQueryModel
+        collectors:
+            - type: className
+              regex: Enraged\\Xenomorph\\Application\\Query\\.*Model
+    -
+        name: ApplicationQueryResult
+        collectors:
+            - type: className
+              regex: Enraged\\Xenomorph\\Application\\QueryResult\\.*Result
+    -
+        name: Infrastructure
+        collectors:
+            - type: bool
+              must:
+                - type: className
+                  regex: Enraged\\Xenomorph\\Infrastructure\\.*
+              must_not:
+                - type: className
+                  regex: Enraged\\Xenomorph\\Infrastructure\\Calendar\\.*
+    -
+        name: InfrastructureCalendar
+        collectors:
+            - type: bool
+              must:
+                  - type: className
+                    regex: Enraged\\Xenomorph\\Infrastructure\\Calendar\\.*
+    -
+        name: DomainObjects
+        collectors:
+            - type: bool
+              must:
+                  - type: className
+                    regex: Enraged\\Xenomorph\\Domain\\.*
+              must_not:
+                  - type: className
+                    regex: Enraged\\Xenomorph\\Domain\\.*Interface
+                  - type: className
+                    regex: Enraged\\Xenomorph\\Domain\\.*Specification
+                  - type: className
+                    regex: Enraged\\Xenomorph\\Domain\\.*Service
+    -
+        name: DomainInterfaces
+        collectors:
+            - type: className
+              regex: Enraged\\Xenomorph\\Application\\Domain\\.*Interface
+    -
+        name: DomainServices
+        collectors:
+            - type: className
+              regex: Enraged\\Xenomorph\\Application\\Domain\\.*Service
+    -
+        name: DomainSpecifications
+        collectors:
+            - type: className
+              regex: Enraged\\Xenomorph\\Application\\Domain\\.*Specification
+ruleset:
+    Interactions:
+        - ApplicationCommand
+        - ApplicationQuery
+        - ApplicationQueryModel
+        - ApplicationQueryResult
+        - ApplicationInfrastructureInterfaces
+    Application:
+        - ApplicationCommand
+        - ApplicationQuery
+        - ApplicationQueryResult
+        - ApplicationQueryModel
+        - ApplicationInfrastructureInterfaces
+    ApplicationCommandHandlers:
+        - ApplicationInfrastructureInterfaces
+        - ApplicationCommand
+        - ApplicationQuery
+        - ApplicationQueryModel
+        - ApplicationQueryResult
+        - DomainInterfaces
+        - DomainObjects
+        - DomainSpecifications
+        - DomainServices
+    ApplicationInfrastructureInterfaces:
+        - ApplicationQueryModel
+    ApplicationQueryResult:
+        - ApplicationQuery
+        - ApplicationQueryModel
+        - ApplicationInfrastructureInterfaces
+    Infrastructure:
+        - InfrastructureCalendar
+        - ApplicationInfrastructureInterfaces
+        - ApplicationQuery
+        - ApplicationQueryModel
+        - DomainObjects
+        - DomainInterfaces
+    InfrastructureCalendar:
+        - ApplicationInfrastructureInterfaces
+        - DomainInterfaces
+        - Infrastructure
+        - DateTime
+    DomainObjects:
+        - DomainInterfaces
+        - DomainSpecifications
+    DomainInterfaces:
+        - DomainObjects
+    DomainSpecifications:
+        - DomainObjects
+        - DomainInterfaces
+    DomainServices:
+        - DomainObjects
+        - DomainInterfaces
+        - DomainSpecifications

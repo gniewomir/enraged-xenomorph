@@ -1,0 +1,16 @@
+imports:
+    - { resource: layers/ }
+
+services:
+    _defaults:
+        autowire: false
+        autoconfigure: false
+
+    # INFRASTRUCTURE/CALENDAR
+    Enraged\Xenomorph\Infrastructure\Calendar\InMemoryCalendar: ~
+    Enraged\Xenomorph\Application\Infrastructure\Calendar\ApplicationCalendarInterface: '@Enraged\Xenomorph\Infrastructure\Calendar\InMemoryCalendar'
+    Enraged\Xenomorph\Infrastructure\Calendar\InfrastructureCalendarInterface: '@Enraged\Xenomorph\Infrastructure\Calendar\InMemoryCalendar'
+
+    # INFRASTRUCTURE/HTTP
+    Enraged\Xenomorph\Infrastructure\HTTP\Client\HttpClientInterface:
+        class: 'Enraged\Xenomorph\Infrastructure\HTTP\Client\InMemoryHttpClient'

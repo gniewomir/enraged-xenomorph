@@ -1,0 +1,60 @@
+services:
+
+    infrastructure:
+        namespace: Enraged\Xenomorph\Infrastructure\
+        resource: '%kernel.project_dir%/src/Enraged/Xenomorph/Infrastructure/'
+        autowire: true
+        autoconfigure: true
+        exclude:
+            - '%kernel.project_dir%/src/Enraged/Xenomorph/Infrastructure/Framework/Kernel.php'
+            - '%kernel.project_dir%/src/Enraged/Xenomorph/Infrastructure/Assertion/'
+            - '%kernel.project_dir%/src/Enraged/Xenomorph/Infrastructure/Exception/'
+
+    # INFRASTRUCTURE/CALENDAR
+    Enraged\Xenomorph\Infrastructure\Calendar\Calendar: ~
+    Enraged\Xenomorph\Infrastructure\Calendar\InfrastructureCalendarInterface: '@Enraged\Xenomorph\Infrastructure\Calendar\Calendar'
+
+    # HTTP
+    Symfony\Component\HttpClient\TraceableHttpClient: ~
+    Enraged\Xenomorph\Infrastructure\HTTP\Client\HttpClientInterface:
+        class: 'Enraged\Xenomorph\Infrastructure\HTTP\Client\HttpClient'
+        public: true
+        arguments:
+            - '@Symfony\Component\HttpClient\TraceableHttpClient'
+
+    # STORAGE/TEMPORARY
+    Enraged\Xenomorph\Infrastructure\Storage\Adapter\StorageAdapter:
+        class: 'Enraged\Xenomorph\Infrastructure\Storage\Adapter\StorageAdapter'
+        autowire: false
+        arguments:
+            - '/app/var/storage/storage'
+
+    Enraged\Xenomorph\Infrastructure\Storage\Filesystem\StorageFilesystem:
+        class: 'Enraged\Xenomorph\Infrastructure\Storage\Filesystem\StorageFilesystem'
+        arguments:
+          [ '@Enraged\Xenomorph\Infrastructure\Storage\Adapter\StorageAdapter' ]
+
+    ## STORAGE/STORAGE
+    Enraged\Xenomorph\Infrastructure\Storage\Adapter\TemporaryAdapter:
+        class: 'Enraged\Xenomorph\Infrastructure\Storage\Adapter\TemporaryAdapter'
+        autowire: false
+        arguments:
+            - '/app/var/storage/temporary'
+
+    Enraged\Xenomorph\Infrastructure\Storage\Filesystem\TemporaryFilesystem:
+        class: 'Enraged\Xenomorph\Infrastructure\Storage\Filesystem\TemporaryFilesystem'
+        arguments:
+          [ '@Enraged\Xenomorph\Infrastructure\Storage\Adapter\TemporaryAdapter' ]
+
+
+    # ORM
+    orm:
+        namespace: Enraged\Xenomorph\Infrastructure\ORM\
+        resource: '%kernel.project_dir%/src/Enraged/Xenomorph/Infrastructure/ORM'
+        autowire: true
+
+    # DBAL
+    dbal:
+        namespace: Enraged\Xenomorph\Infrastructure\DBAL\
+        resource: '%kernel.project_dir%/src/Enraged/Xenomorph/Infrastructure/DBAL'
+        autowire: true

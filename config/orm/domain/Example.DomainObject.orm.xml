@@ -1,0 +1,10 @@
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping">
+    <entity name="Enraged\Xenomorph\Domain\Example\DomainObject" table="ex_domain_example_domain_object">
+        <id name="id" type="uuid" column="id">
+            <generator strategy="NONE"/>
+        </id>
+        <field name="created_at" type="datetime_immutable"/>
+        <field name="updated_at" type="datetime_immutable" nullable="true"/>
+        <field name="deleted_at" type="datetime_immutable" nullable="true"/>
+    </entity>
+</doctrine-mapping>

@@ -1,0 +1,22 @@
+imports:
+    - { resource: layers/ }
+
+services:
+    application_fixtures:
+        namespace: Enraged\Xenomorph\Application\Fixtures\
+        resource: '%kernel.project_dir%/src/Enraged/Xenomorph/Application/Fixtures/*Fixtures.php'
+        autowire: true
+        autoconfigure: true
+
+    application_fixtures_faker:
+        namespace: Enraged\Xenomorph\Application\Fixtures\Faker\
+        resource: '%kernel.project_dir%/src/Enraged/Xenomorph/Application/Fixtures/Faker/*.php'
+        autowire: true
+        autoconfigure: false
+
+    application_fixtures_contexts:
+        namespace: Enraged\Xenomorph\Application\Fixtures\Context\
+        resource: '%kernel.project_dir%/src/Enraged/Xenomorph/Application/Fixtures/Context/**/*Context.php'
+        autowire: true
+        autoconfigure: false
+        shared: false

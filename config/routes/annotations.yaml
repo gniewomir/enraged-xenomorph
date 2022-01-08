@@ -1,0 +1,7 @@
+kernel:
+    resource: '../../src/Enraged/Xenomorph/Infrastructure/Framework/Kernel.php'
+    type: annotation
+
+controllers:
+    resource: '../../src/Enraged/Xenomorph/Interactions/Web/Controller/'
+    type: annotation

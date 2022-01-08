@@ -1,0 +1,24 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Enraged\Xenomorph\Application\QueryResult\Example;
+
+use Enraged\Xenomorph\Application\Infrastructure\BUS\ApplicationQueryBusInterface;
+use Enraged\Xenomorph\Application\Query\Example\GetDomainObjectQuery;
+use Enraged\Xenomorph\Application\Query\Example\Model\DomainObjectModel;
+
+class GetDomainObjectQueryResult
+{
+    protected ApplicationQueryBusInterface $application_query_bus;
+
+    public function __construct(ApplicationQueryBusInterface $application_query_bus)
+    {
+        $this->application_query_bus = $application_query_bus;
+    }
+
+    public function __invoke(GetDomainObjectQuery $query) : DomainObjectModel
+    {
+        return $this->application_query_bus->query($query);
+    }
+}
