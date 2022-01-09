@@ -10,7 +10,7 @@ This project is very opinionated attempt to compile a bit of experience, few goo
 * Docker
 * php-cs-fixer, phpstan, psalm, deptrac
 
-# Architecture [work in progress]
+# Architecture
 
 Described in depfile.yaml (deptrac configuration)
 
@@ -24,4 +24,3 @@ The project is dockerized and configured to work with docker-compose
      - inside run `composer project:reset`
      - inside run `composer test`
  - app should be accessible on `http://localhost:3160`
- - 
