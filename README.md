@@ -1,4 +1,4 @@
-# Xenomorph - DDD/CQRS Symfony Application Boilerplate
+# Enraged Xenomorph - DDD/CQRS Symfony Application Boilerplate
 
 This project is very opinionated attempt to compile a bit of experience, few good practices, some practical solutions to common problems & automation to create robust boilerplate for bootstrapping of domain-driven Symfony applications.   
 
