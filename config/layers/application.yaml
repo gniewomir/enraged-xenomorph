@@ -74,3 +74,6 @@ services:
 
     # INFRASTRUCTURE/DBAL
     Enraged\Xenomorph\Application\Infrastructure\DBAL\Example\DomainObjectDbalInterface: '@Enraged\Xenomorph\Infrastructure\DBAL\Example\DomainObjectDbal'
+
+    # INFRASTRUCTURE/FAKER
+    Enraged\Xenomorph\Application\Infrastructure\Faker\FakerInterface: '@Enraged\Xenomorph\Infrastructure\Faker\Faker'

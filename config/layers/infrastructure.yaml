@@ -58,3 +58,6 @@ services:
         namespace: Enraged\Xenomorph\Infrastructure\DBAL\
         resource: '%kernel.project_dir%/src/Enraged/Xenomorph/Infrastructure/DBAL'
         autowire: true
+
+    # FAKER
+    Enraged\Xenomorph\Infrastructure\Faker\Faker: ~

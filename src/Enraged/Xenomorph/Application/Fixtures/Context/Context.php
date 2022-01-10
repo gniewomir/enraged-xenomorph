@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Enraged\Xenomorph\Application\Fixtures\Context;
 
-use Enraged\Xenomorph\Application\Fixtures\Context\Domain\Example\DomainObjectContext;
+use Enraged\Xenomorph\Application\Fixtures\Context\Example\DomainObjectContext;
 
 class Context
 {
