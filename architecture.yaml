@@ -12,6 +12,8 @@ formatters:
             - NonV4TypeUuid
             - Application/Models
             - Interactions/Web/Models
+            - Application/Fixtures
+            - Symfony
         groups:
             Iteractions:
                 - Interactions
@@ -35,6 +37,7 @@ formatters:
             Global:
                 - Time
                 - Symfony
+                - Doctrine
 ruleset:
     Time:
     Interactions:
@@ -58,13 +61,22 @@ ruleset:
         - Interactions/Web/Queries
         - Interactions/Web/Models
         - Infrastructure
+    Application/Fixtures:
+        - Application
+        - Application/Commands
+        - Application/Queries
+        - Application/Models
+        - Infrastructure
+        - Doctrine
     Infrastructure:
         - Application/Models
         - Symfony
+        - Doctrine
     Infrastructure/Domain:
         - Domain
         - Infrastructure
         - Symfony
+        - Doctrine
     Infrastructure/Calendar:
         - Infrastructure
         - Time

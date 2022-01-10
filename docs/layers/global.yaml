@@ -35,3 +35,10 @@ layers:
                     regex: Symfony\\Component\\Messenger\\Envelope
                   - type: className
                     regex: Symfony\\Component\\Messenger\\Stamp\\StampInterface
+    -
+        name: Doctrine
+        collectors:
+            - type: bool
+              must:
+                  - type: className
+                    regex: Doctrine\\.*

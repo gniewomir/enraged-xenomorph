@@ -19,7 +19,7 @@ Term "Interactions" is used as replacement for "User Interface", which I conside
 ## Dependency graph 
 
 ![Architecture](/docs/architecture.png?raw=true "Architecture")
-(disclaimer: graph is generated automatically and defined not only by deptrac configuration but also by what dependencies are present at this time - not intended)
+(disclaimer: graph is generated automatically, skips some elements for readability and shows present dependencies - not intended)
 
 # Installation
 

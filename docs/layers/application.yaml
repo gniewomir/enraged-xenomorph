@@ -18,6 +18,8 @@ layers:
                         regex: Enraged\\Xenomorph\\Application\\Query\\.*Model
                     -   type: className
                         regex: Enraged\\Xenomorph\\Application\\QueryHandler\\.*
+                    -   type: className
+                        regex: Enraged\\Xenomorph\\Application\\Fixtures\\.*
     -   name: Application/Commands
         collectors:
             -   type: className
@@ -38,3 +40,7 @@ layers:
         collectors:
             -   type: className
                 regex: Enraged\\Xenomorph\\Application\\QueryHandler\\.*
+    -   name: Application/Fixtures
+        collectors:
+            -   type: className
+                regex: Enraged\\Xenomorph\\Application\\Fixtures\\.*
