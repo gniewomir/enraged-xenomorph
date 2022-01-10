@@ -16,7 +16,7 @@ class DomainObjectTest extends UnitTestCase
     public function test_tests_id_candidate()
     {
         $this->expectExceptionObject(
-            new DomainInvalidAssertionException($error = 'lastError', 32)
+            new DomainInvalidAssertionException($error = 'lastError')
         );
         new DomainObject(
             new UuidV4(),

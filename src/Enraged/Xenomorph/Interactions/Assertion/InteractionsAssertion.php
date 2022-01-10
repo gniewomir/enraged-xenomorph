@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Enraged\Xenomorph\Application\Assertion;
+namespace Enraged\Xenomorph\Interactions\Assertion;
 
 use Assert\InvalidArgumentException;
 use Enraged\Packages\Assertion\Assertion;
-use Enraged\Xenomorph\Application\Exception\ApplicationInvalidAssertionException;
+use Enraged\Xenomorph\Interactions\Exception\InteractionsInvalidAssertionException;
 
-class ApplicationAssertion extends Assertion
+class InteractionsAssertion extends Assertion
 {
     /**
      * Helper method that handles building the assertion failure exceptions.
@@ -21,11 +21,11 @@ class ApplicationAssertion extends Assertion
      * @param null                 $propertyPath
      * @param mixed[]              $constraints
      */
-    protected static function createException($value, $message, $code, $propertyPath = null, array $constraints = []) : ApplicationInvalidAssertionException
+    protected static function createException($value, $message, $code, $propertyPath = null, array $constraints = []) : InteractionsInvalidAssertionException
     {
         $exception = new InvalidArgumentException($message, $code, $propertyPath, $value, $constraints);
 
-        return new ApplicationInvalidAssertionException(
+        return new InteractionsInvalidAssertionException(
             $exception->getMessage(),
             0,
             $exception
