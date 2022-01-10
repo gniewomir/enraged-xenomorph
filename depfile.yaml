@@ -1,6 +1,7 @@
 paths:
     - ./src
 layers:
+    # CONSTRAINTS
     -
         # Make DateTime a separate layer to ensure that only InfrastructureCalendar has access to it.
         # It gives us ability to change time when testing with predictable results
@@ -25,11 +26,15 @@ layers:
               must_not:
                 - type: className
                   regex: Symfony\\Component\\Uid\\UuidV4
+
+    # UI
     -
         name: Interactions
         collectors:
             - type: className
               regex: Enraged\\Xenomorph\\Interactions\\.*
+
+    # APPLICATION
     -
         name: Application
         collectors:
@@ -80,6 +85,8 @@ layers:
         collectors:
             - type: className
               regex: Enraged\\Xenomorph\\Application\\QueryResult\\.*Result
+
+    # INFRASTRUCTURE
     -
         name: Infrastructure
         collectors:
@@ -97,6 +104,8 @@ layers:
               must:
                   - type: className
                     regex: Enraged\\Xenomorph\\Infrastructure\\Calendar\\.*
+
+    # DOMAIN
     -
         name: DomainObjects
         collectors:
@@ -127,18 +136,24 @@ layers:
             - type: className
               regex: Enraged\\Xenomorph\\Application\\Domain\\.*Specification
 ruleset:
+    # UI
     Interactions:
         - ApplicationCommand
         - ApplicationQuery
         - ApplicationQueryModel
         - ApplicationQueryResult
         - ApplicationInfrastructureInterfaces
+
+    # APPLICATION
     Application:
         - ApplicationCommand
         - ApplicationQuery
         - ApplicationQueryResult
         - ApplicationQueryModel
         - ApplicationInfrastructureInterfaces
+    ApplicationInfrastructureInterfaces:
+        - ApplicationQueryModel
+    ApplicationCommand:
     ApplicationCommandHandlers:
         - ApplicationInfrastructureInterfaces
         - ApplicationCommand
@@ -149,12 +164,14 @@ ruleset:
         - DomainObjects
         - DomainSpecifications
         - DomainServices
-    ApplicationInfrastructureInterfaces:
-        - ApplicationQueryModel
+    ApplicationQuery:
+    ApplicationQueryModel:
     ApplicationQueryResult:
         - ApplicationQuery
         - ApplicationQueryModel
         - ApplicationInfrastructureInterfaces
+
+    # Infrastructure
     Infrastructure:
         - InfrastructureCalendar
         - ApplicationInfrastructureInterfaces
@@ -167,6 +184,8 @@ ruleset:
         - DomainInterfaces
         - Infrastructure
         - DateTime
+
+    # DOMAIN
     DomainObjects:
         - DomainInterfaces
         - DomainSpecifications
