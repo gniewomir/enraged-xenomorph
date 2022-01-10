@@ -9,7 +9,6 @@ use DateTimeImmutable;
 use DateTimeInterface;
 use Enraged\Xenomorph\CalendarInterface;
 use Enraged\Xenomorph\Infrastructure\Assertion\InfrastructureAssertion;
-use Enraged\Xenomorph\InMemoryCalendarInterface;
 
 final class InMemoryCalendar implements CalendarInterface, InMemoryCalendarInterface
 {

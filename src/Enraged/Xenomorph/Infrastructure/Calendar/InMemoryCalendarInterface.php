@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Enraged\Xenomorph;
+namespace Enraged\Xenomorph\Infrastructure\Calendar;
 
 use DateInterval;
 

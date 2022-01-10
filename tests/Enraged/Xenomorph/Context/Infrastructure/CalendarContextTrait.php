@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Tests\Enraged\Xenomorph\Context\Infrastructure;
 
 use Enraged\Xenomorph\CalendarInterface;
-use Enraged\Xenomorph\InMemoryCalendarInterface;
+use Enraged\Xenomorph\Infrastructure\Calendar\InMemoryCalendarInterface;
 use RuntimeException;
 
 trait CalendarContextTrait
