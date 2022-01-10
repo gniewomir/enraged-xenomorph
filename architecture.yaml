@@ -5,6 +5,7 @@ formatters:
         groups:
             Application:
                 - Application
+                - Application Exceptions
                 - Application Infrastructure Interfaces
                 - Application Command
                 - Application Command Handlers
@@ -13,15 +14,19 @@ formatters:
                 - Application Query Result
             Infrastructure:
                 - Infrastructure
+                - Infrastructure Exceptions
+                - Infrastructure Domain Specific
                 - Infrastructure Calendar
                 - Time
             Domain:
-                - Domain Objects
+                - Domain
+                - Domain Exceptions
                 - Domain Services
                 - Domain Specifications
                 - Domain Infrastructure Interfaces
             Interactions:
                 - Interactions
+                - Interactions Exceptions
             Framework:
                 - Symfony
 layers:
@@ -70,8 +75,18 @@ layers:
     -
         name: Interactions
         collectors:
+            - type: bool
+              must:
+                - type: className
+                  regex: Enraged\\Xenomorph\\Interactions\\.*
+              must_not:
+                - type: className
+                  regex: Enraged\\Xenomorph\\Interactions\\Exception\\.*
+    -
+        name: Interactions Exceptions
+        collectors:
             - type: className
-              regex: Enraged\\Xenomorph\\Interactions\\.*
+              regex: Enraged\\Xenomorph\\Interactions\\Exception\\.*
 
     # APPLICATION
     -
@@ -94,6 +109,13 @@ layers:
                     regex: Enraged\\Xenomorph\\Application\\QueryResult\\.*Result
                   - type: className
                     regex: Enraged\\Xenomorph\\Application\\Infrastructure\\.*Interface
+                  - type: className
+                    regex: Enraged\\Xenomorph\\Application\\Exception\\.*
+    -
+        name: Application Exceptions
+        collectors:
+            - type: className
+              regex: Enraged\\Xenomorph\\Application\\Exception\\.*
     -
         name: Application Infrastructure Interfaces
         collectors:
@@ -136,6 +158,20 @@ layers:
               must_not:
                 - type: className
                   regex: Enraged\\Xenomorph\\Infrastructure\\Calendar\\.*
+                - type: className
+                  regex: Enraged\\Xenomorph\\Infrastructure\\ORM\\.*
+                - type: className
+                  regex: Enraged\\Xenomorph\\Infrastructure\\Exception\\.*
+    -
+        name: Infrastructure Exceptions
+        collectors:
+            - type: className
+              regex: Enraged\\Xenomorph\\Infrastructure\\Exception\\.*
+    -
+        name: Infrastructure Domain Specific
+        collectors:
+            - type: className
+              regex: Enraged\\Xenomorph\\Infrastructure\\ORM\\.*
     -
         name: Infrastructure Calendar
         collectors:
@@ -146,7 +182,7 @@ layers:
 
     # DOMAIN
     -
-        name: Domain Objects
+        name: Domain
         collectors:
             - type: bool
               must:
@@ -159,6 +195,13 @@ layers:
                     regex: Enraged\\Xenomorph\\Domain\\.*Specification
                   - type: className
                     regex: Enraged\\Xenomorph\\Domain\\.*Service
+                  - type: className
+                    regex: Enraged\\Xenomorph\\Domain\\Exception\\.*
+    -
+        name: Domain Exceptions
+        collectors:
+            - type: className
+              regex: Enraged\\Xenomorph\\Domain\\Exception\\.*
     -
         name: Domain Infrastructure Interfaces
         collectors:
@@ -183,6 +226,10 @@ ruleset:
         - Application Query Result
         - Application Infrastructure Interfaces
         - Symfony
+        - Application Exceptions
+        - Interactions Exceptions
+        - Infrastructure Exceptions
+        - Domain Exceptions
 
     # APPLICATION
     Application:
@@ -191,6 +238,8 @@ ruleset:
         - Application Query Result
         - Application Model
         - Application Infrastructure Interfaces
+        - Application Exceptions
+    Application Exceptions:
     Application Infrastructure Interfaces:
         - Application Model
     Application Command:
@@ -201,15 +250,19 @@ ruleset:
         - Application Model
         - Application Query Result
         - Domain Infrastructure Interfaces
-        - Domain Objects
+        - Domain
         - Domain Specifications
         - Domain Services
+        - Application Exceptions
+        - Infrastructure Exceptions
     Application Query:
     Application Model:
     Application Query Result:
         - Application Query
         - Application Model
         - Application Infrastructure Interfaces
+        - Application Exceptions
+        - Infrastructure Exceptions
 
     # Infrastructure
     Infrastructure:
@@ -217,25 +270,36 @@ ruleset:
         - Application Infrastructure Interfaces
         - Application Query
         - Application Model
-        - Domain Objects
-        - Domain Infrastructure Interfaces
         - Symfony
+        - Infrastructure Exceptions
+    Infrastructure Exceptions:
+    Infrastructure Domain Specific:
+        - Domain
+        - Domain Infrastructure Interfaces
+        - Infrastructure Exceptions
     Infrastructure Calendar:
         - Application Infrastructure Interfaces
         - Domain Infrastructure Interfaces
         - Infrastructure
+        - Infrastructure Exceptions
         - Time
 
     # DOMAIN
-    Domain Objects:
+    Domain:
         - Domain Infrastructure Interfaces
         - Domain Specifications
+        - Domain Exceptions
+    Domain Exceptions:
     Domain Infrastructure Interfaces:
-        - Domain Objects
+        - Domain
     Domain Specifications:
-        - Domain Objects
+        - Domain
         - Domain Infrastructure Interfaces
+        - Domain Exceptions
+        - Infrastructure Exceptions
     Domain Services:
-        - Domain Objects
+        - Domain
         - Domain Infrastructure Interfaces
         - Domain Specifications
+        - Domain Exceptions
+        - Infrastructure Exceptions

@@ -6,7 +6,7 @@ namespace Enraged\Xenomorph\Infrastructure\ORM\Example;
 
 use Enraged\Xenomorph\Domain\Example\DomainObject;
 use Enraged\Xenomorph\Domain\Example\DomainObjectInterface;
-use Enraged\Xenomorph\Domain\Exception\DomainObjectNotFoundException;
+use Enraged\Xenomorph\Infrastructure\Exception\InfrastructureOrmNotFoundException;
 use Symfony\Component\Uid\UuidV4;
 
 class DomainObjectInMemoryRepository implements DomainObjectInterface
@@ -39,6 +39,6 @@ class DomainObjectInMemoryRepository implements DomainObjectInterface
                 return $domain_object;
             }
         }
-        throw new DomainObjectNotFoundException();
+        throw new InfrastructureOrmNotFoundException();
     }
 }

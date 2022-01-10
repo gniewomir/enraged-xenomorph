@@ -170,14 +170,14 @@
         "quality": [
             "@quality:fix",
             "@quality:check",
-            "@quality:deptrac:dump",
+            "@quality:architecture:deptrac:dump",
             "@test"
         ],
         "quality:check": [
             "@quality:cs:check",
             "@quality:stan:check",
             "@quality:psalm:check",
-            "@quality:deptrac:check"
+            "@quality:architecture:deptrac:check"
         ],
         "quality:fix": [
             "@quality:cs:fix"
@@ -195,10 +195,10 @@
         "quality:psalm:check": [
             "vendor/bin/psalm --no-cache"
         ],
-        "quality:deptrac:check": [
+        "quality:architecture:deptrac:check": [
             "vendor/bin/deptrac analyse architecture.yaml"
         ],
-        "quality:deptrac:dump": [
+        "quality:architecture:deptrac:dump": [
             "vendor/bin/deptrac analyse architecture.yaml --quiet --formatter=graphviz --graphviz-display=0 --graphviz-dump-image=/app/docs/architecture.png"
         ],
         "test": [
