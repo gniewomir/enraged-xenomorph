@@ -20,3 +20,4 @@ services:
         autowire: true
         autoconfigure: false
         shared: false
+        lazy: true
