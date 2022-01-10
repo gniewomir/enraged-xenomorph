@@ -1,5 +1,29 @@
 paths:
     - ./src
+formatters:
+    graphviz:
+        groups:
+            Application:
+                - Application
+                - Application Infrastructure Interfaces
+                - Application Command
+                - Application Command Handlers
+                - Application Query
+                - Application Model
+                - Application Query Result
+            Infrastructure:
+                - Infrastructure
+                - Infrastructure Calendar
+                - Time
+            Domain:
+                - Domain Objects
+                - Domain Services
+                - Domain Specifications
+                - Domain Infrastructure Interfaces
+            Interactions:
+                - Interactions
+            Framework:
+                - Symfony
 layers:
     # CONSTRAINTS
     -
