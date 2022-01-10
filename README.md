@@ -24,4 +24,4 @@ The project is dockerized and configured to work with docker-compose
      - inside run `composer project:reset`
      - inside run `composer test`
  - app should be accessible on `http://localhost:3160`
- - play with it runing `composer quality` form time to time
+ - play with it running `composer quality` from time to time
