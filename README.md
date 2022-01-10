@@ -14,6 +14,8 @@ This project is very opinionated attempt to compile a bit of experience, few goo
 
 Described in architecture.yaml (deptrac configuration)
 
+Term "Interactions" is used as replacement for "User Interface", which I consider a bit misleading.
+
 ## Dependency graph 
 
 ![Architecture](/docs/architecture.png?raw=true "Architecture")
