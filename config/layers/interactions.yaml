@@ -3,8 +3,8 @@ services:
     interactions:
         namespace: Enraged\Xenomorph\Interactions\
         resource: '%kernel.project_dir%/src/Enraged/Xenomorph/Interactions/'
-        autowire: true
-        autoconfigure: true
+        autowire: false
+        autoconfigure: false
         exclude:
             - '%kernel.project_dir%/src/Enraged/Xenomorph/Interactions/Assertion/'
             - '%kernel.project_dir%/src/Enraged/Xenomorph/Interactions/Exception/'
@@ -13,13 +13,11 @@ services:
     interactions_web_queries:
         namespace: Enraged\Xenomorph\Interactions\Web\Query\
         autowire: false
-        autoconfigure: false
         resource: '%kernel.project_dir%/src/Enraged/Xenomorph/Interactions/Web/Query/'
 
     interactions_web_query_result:
         namespace: Enraged\Xenomorph\Interactions\Web\QueryResult\
         autowire: true
-        autoconfigure: false
         resource: '%kernel.project_dir%/src/Enraged/Xenomorph/Interactions/Web/QueryResult/**/*Result.php'
 
     interactions_web_controllers:

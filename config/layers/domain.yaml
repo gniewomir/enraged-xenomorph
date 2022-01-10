@@ -15,13 +15,11 @@ services:
     domain_events:
         namespace: Enraged\Xenomorph\Domain\Event\
         autowire: false
-        autoconfigure: false
         resource: '%kernel.project_dir%/src/Enraged/Xenomorph/Domain/Event/'
 
     domain_event_handlers:
         namespace: Enraged\Xenomorph\Domain\EventHandler\
         autowire: true
-        autoconfigure: false
         resource: '%kernel.project_dir%/src/Enraged/Xenomorph/Domain/EventHandler/'
         tags: [ { name: 'messenger.message_handler', bus: 'domain_event.bus' } ]
 
@@ -31,16 +29,11 @@ services:
         namespace: Enraged\Xenomorph\Domain\
         resource: '%kernel.project_dir%/src/Enraged/Xenomorph/Domain/**/*Specification.php'
         autowire: true
-        autoconfigure: false
 
     domain_services:
         namespace: Enraged\Xenomorph\Domain\
         resource: '%kernel.project_dir%/src/Enraged/Xenomorph/Domain/**/*Service.php'
         autowire: true
-        autoconfigure: false
-
-    # INFRASTRUCTURE/CALENDAR
-    Enraged\Xenomorph\Domain\DomainCalendarInterface: '@Enraged\Xenomorph\Infrastructure\Calendar\Calendar'
 
     # INFRASTRUCTURE/ORM
     Enraged\Xenomorph\Domain\Example\DomainObjectInterface:  '@Enraged\Xenomorph\Infrastructure\ORM\Example\DomainObjectRepository'

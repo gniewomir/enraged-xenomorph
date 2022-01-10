@@ -11,31 +11,27 @@ services:
             - '%kernel.project_dir%/src/Enraged/Xenomorph/Application/Assertion/'
             - '%kernel.project_dir%/src/Enraged/Xenomorph/Application/Exception/'
 
-    # INFRASTRUCTURE/COMMAND/BUS
+    # APPLICATION/COMMAND HANDLERS
     application_commands:
         namespace: Enraged\Xenomorph\Application\Command\
         autowire: false
-        autoconfigure: false
         resource: '%kernel.project_dir%/src/Enraged/Xenomorph/Application/Command/'
 
     application_command_handlers:
         namespace: Enraged\Xenomorph\Application\CommandHandler\
         autowire: true
-        autoconfigure: false
         resource: '%kernel.project_dir%/src/Enraged/Xenomorph/Application/CommandHandler/'
         tags: [ { name: 'messenger.message_handler', bus: 'command.bus' } ]
 
-    # INFRASTRUCTURE/QUERY/BUS
+    # APPLICATION/QUERY HANDLERS
     application_queries:
         namespace: Enraged\Xenomorph\Application\Query\
         autowire: false
-        autoconfigure: false
         resource: '%kernel.project_dir%/src/Enraged/Xenomorph/Application/Query/'
 
     query_handlers:
         namespace: Enraged\Xenomorph\Application\QueryHandler\
         autowire: true
-        autoconfigure: false
         resource: '%kernel.project_dir%/src/Enraged/Xenomorph/Application/QueryHandler/'
         tags: [ { name: 'messenger.message_handler', bus: 'query.bus' } ]
 
@@ -45,25 +41,19 @@ services:
         autoconfigure: false
         resource: '%kernel.project_dir%/src/Enraged/Xenomorph/Application/QueryResult/**/*Result.php'
 
-    # INFRASTRUCTURE/EVENT/BUS
+    # APPLICATION/EVENT/BUS
     application_events:
         namespace: Enraged\Xenomorph\Application\Event\
         autowire: false
-        autoconfigure: false
         resource: '%kernel.project_dir%/src/Enraged/Xenomorph/Application/Event/'
 
     application_event_handlers:
         namespace: Enraged\Xenomorph\Application\EventHandler\
         autowire: true
-        autoconfigure: false
         resource: '%kernel.project_dir%/src/Enraged/Xenomorph/Application/EventHandler/'
         tags: [ { name: 'messenger.message_handler', bus: 'application_event.bus' } ]
 
     Enraged\Xenomorph\Application\Infrastructure\BUS\ApplicationEventBusInterface: '@Enraged\Xenomorph\Infrastructure\BUS\ApplicationEventBus'
-
-    # INFRASTRUCTURE/STORAGE
-    Enraged\Xenomorph\StorageFilesystemInterface: '@Enraged\Xenomorph\Infrastructure\Storage\Filesystem\StorageFilesystem'
-    Enraged\Xenomorph\TemporaryFilesystemInterface: '@Enraged\Xenomorph\Infrastructure\Storage\Filesystem\TemporaryFilesystem'
 
     # INFRASTRUCTURE/DBAL
     Enraged\Xenomorph\Application\Infrastructure\DBAL\Example\DomainObjectDbalInterface: '@Enraged\Xenomorph\Infrastructure\DBAL\Example\DomainObjectDbal'
