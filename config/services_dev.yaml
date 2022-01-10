@@ -16,3 +16,10 @@ services:
         shared: false
         lazy: true
 
+    # FIXTURES
+    Enraged\Xenomorph\Application\Fixtures\DevFixtures:
+        public: true
+        autowire: true
+
+    # INFRASTRUCTURE/FAKER
+    Enraged\Xenomorph\Application\Infrastructure\Faker\FakerInterface: '@Enraged\Xenomorph\Infrastructure\Faker\Faker'

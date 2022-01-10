@@ -11,7 +11,7 @@ services:
             - '%kernel.project_dir%/src/Enraged/Xenomorph/Application/Assertion/'
             - '%kernel.project_dir%/src/Enraged/Xenomorph/Application/Exception/'
 
-    # COMMAND/BUS
+    # INFRASTRUCTURE/COMMAND/BUS
     application_commands:
         namespace: Enraged\Xenomorph\Application\Command\
         autowire: false
@@ -27,7 +27,7 @@ services:
 
     Enraged\Xenomorph\Application\Infrastructure\BUS\ApplicationCommandBusInterface: '@Enraged\Xenomorph\Infrastructure\BUS\ApplicationCommandBus'
 
-    # QUERY/BUS
+    # INFRASTRUCTURE/QUERY/BUS
     application_queries:
         namespace: Enraged\Xenomorph\Application\Query\
         autowire: false
@@ -49,7 +49,7 @@ services:
 
     Enraged\Xenomorph\Application\Infrastructure\BUS\ApplicationQueryBusInterface: '@Enraged\Xenomorph\Infrastructure\BUS\ApplicationQueryBus'
 
-    # EVENT/BUS
+    # INFRASTRUCTURE/EVENT/BUS
     application_events:
         namespace: Enraged\Xenomorph\Application\Event\
         autowire: false
@@ -75,5 +75,3 @@ services:
     # INFRASTRUCTURE/DBAL
     Enraged\Xenomorph\Application\Infrastructure\DBAL\Example\DomainObjectDbalInterface: '@Enraged\Xenomorph\Infrastructure\DBAL\Example\DomainObjectDbal'
 
-    # INFRASTRUCTURE/FAKER
-    Enraged\Xenomorph\Application\Infrastructure\Faker\FakerInterface: '@Enraged\Xenomorph\Infrastructure\Faker\Faker'

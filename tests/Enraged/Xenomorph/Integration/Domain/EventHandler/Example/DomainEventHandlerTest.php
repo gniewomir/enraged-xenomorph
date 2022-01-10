@@ -10,7 +10,7 @@ use Tests\Enraged\Xenomorph\Integration\IntegrationTestCase;
 
 class DomainEventHandlerTest extends IntegrationTestCase
 {
-    public function test_smoke_test_for_domain_event_bus()
+    public function test_for_smoke_of_domain_event_bus()
     {
         $this->assertInstanceOf(
             Envelope::class,

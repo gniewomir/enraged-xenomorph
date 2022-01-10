@@ -9,7 +9,7 @@ use Tests\Enraged\Xenomorph\Integration\IntegrationTestCase;
 
 class StorageFilesystemTest extends IntegrationTestCase
 {
-    public function test_smoke()
+    public function test_for_smoke_of_storage_filesystem()
     {
         $subject = $this
             ->getContainer()
