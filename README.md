@@ -12,6 +12,8 @@ This project is very opinionated attempt to compile a bit of experience, few goo
 
 # Architecture
 
+![Architecture](/docs/architecture.png?raw=true "Architecture")
+
 Described in depfile.yaml (deptrac configuration)
 
 ## Installation
