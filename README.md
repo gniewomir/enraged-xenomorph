@@ -19,7 +19,7 @@ Described in architecture.yaml (deptrac configuration)
 ![Architecture](/docs/architecture.png?raw=true "Architecture")
 (disclaimer: graph is generated automatically and defined not only by deptrac configuration but also by what dependencies are present at this time - not intended)
 
-## Installation
+# Installation
 
 The project is dockerized and configured to work with docker-compose
 
