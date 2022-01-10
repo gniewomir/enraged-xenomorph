@@ -170,6 +170,7 @@
         "quality": [
             "@quality:fix",
             "@quality:check",
+            "@quality:deptrac:dump",
             "@test"
         ],
         "quality:check": [
@@ -196,6 +197,9 @@
         ],
         "quality:deptrac:check": [
             "vendor/bin/deptrac analyse"
+        ],
+        "quality:deptrac:dump": [
+            "vendor/bin/deptrac analyse --quiet --formatter=graphviz --graphviz-display=0 --graphviz-dump-image=/app/docs/architecture.png"
         ],
         "test": [
             "@quality:check",
