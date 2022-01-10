@@ -8,7 +8,7 @@ interface SpecificationInterface
 {
     public function isSatisfiedBy(mixed $candidate) : bool;
 
-    public function lastError() : string;
+    public function lastError() : ?string;
 
     public function lastCandidate() : mixed;
 }

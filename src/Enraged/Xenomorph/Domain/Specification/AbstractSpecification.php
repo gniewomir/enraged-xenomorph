@@ -9,12 +9,12 @@ use Enraged\Xenomorph\Domain\Exception\DomainNotImplementedException;
 
 abstract class AbstractSpecification implements SpecificationInterface
 {
-    private string $error = '';
-    private mixed $candidate;
+    private ?string $error = null;
+    private mixed $candidate = null;
 
     public function isSatisfiedBy(mixed $candidate) : bool
     {
-        $this->error = '';
+        $this->error = null;
         $this->candidate = $candidate;
         if (!method_exists($this, 'assertions')) {
             throw new DomainNotImplementedException('Specification have to implement Specification::assertions(Hint $candidate) method!');
@@ -30,7 +30,7 @@ abstract class AbstractSpecification implements SpecificationInterface
         return true;
     }
 
-    public function lastError() : string
+    public function lastError() : ?string
     {
         return $this->error;
     }
