@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace Enraged\Xenomorph\Infrastructure\BUS;
 
-use Enraged\Xenomorph\Application\Infrastructure\BUS\ApplicationCommandBusInterface;
+use Enraged\Xenomorph\CommandBusInterface;
 use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Messenger\Stamp\StampInterface;
 
-class ApplicationCommandBus implements ApplicationCommandBusInterface
+class CommandBus implements CommandBusInterface
 {
     protected MessageBusInterface $command_bus;
 
-    public function __construct(MessageBusInterface $applicationCommandBus)
+    public function __construct(MessageBusInterface $commandBus)
     {
-        $this->command_bus = $applicationCommandBus;
+        $this->command_bus = $commandBus;
     }
 
     /**

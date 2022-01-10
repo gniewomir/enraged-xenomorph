@@ -6,11 +6,9 @@ namespace Tests\Enraged\Xenomorph\Fixtures\Stub\Infrastructure\Calendar;
 
 use DateTimeImmutable;
 use DateTimeInterface;
-use Enraged\Xenomorph\Application\Infrastructure\Calendar\ApplicationCalendarInterface;
-use Enraged\Xenomorph\Domain\DomainCalendarInterface;
-use Enraged\Xenomorph\Infrastructure\Calendar\InfrastructureCalendarInterface;
+use Enraged\Xenomorph\CalendarInterface;
 
-class CalendarStub implements ApplicationCalendarInterface, DomainCalendarInterface, InfrastructureCalendarInterface
+class CalendarStub implements CalendarInterface
 {
     protected ?DateTimeInterface $now;
 

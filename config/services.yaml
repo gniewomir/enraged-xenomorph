@@ -9,3 +9,15 @@ services:
     _defaults:
         autowire: false
         autoconfigure: false
+
+
+    # CALENDAR
+    Enraged\Xenomorph\CalendarInterface: '@Enraged\Xenomorph\Infrastructure\Calendar\Calendar'
+
+    # BUS
+    Enraged\Xenomorph\CommandBusInterface: '@Enraged\Xenomorph\Infrastructure\BUS\CommandBus'
+    Enraged\Xenomorph\QueryBusInterface: '@Enraged\Xenomorph\Infrastructure\BUS\QueryBus'
+
+    # STORAGE
+    Enraged\Xenomorph\StorageFilesystemInterface: '@Enraged\Xenomorph\Infrastructure\Storage\Filesystem\StorageFilesystem'
+    Enraged\Xenomorph\TemporaryFilesystemInterface: '@Enraged\Xenomorph\Infrastructure\Storage\Filesystem\TemporaryFilesystem'

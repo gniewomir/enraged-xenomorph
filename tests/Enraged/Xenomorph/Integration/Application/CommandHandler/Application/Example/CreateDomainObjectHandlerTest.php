@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Enraged\Xenomorph\Integration\Application\CommandHandler\Example;
+namespace Tests\Enraged\Xenomorph\Integration\Application\CommandHandler\Application\Example;
 
 use Enraged\Xenomorph\Application\Command\Example\CreateDomainObjectCommand;
 use Enraged\Xenomorph\Application\CommandHandler\Example\CreateDomainObjectHandler;

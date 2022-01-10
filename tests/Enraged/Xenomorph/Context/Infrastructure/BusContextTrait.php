@@ -4,27 +4,27 @@ declare(strict_types=1);
 
 namespace Tests\Enraged\Xenomorph\Context\Infrastructure;
 
-use Enraged\Xenomorph\Application\Infrastructure\BUS\ApplicationCommandBusInterface;
 use Enraged\Xenomorph\Application\Infrastructure\BUS\ApplicationEventBusInterface;
-use Enraged\Xenomorph\Application\Infrastructure\BUS\ApplicationQueryBusInterface;
+use Enraged\Xenomorph\CommandBusInterface;
 use Enraged\Xenomorph\Domain\DomainEventBusInterface;
+use Enraged\Xenomorph\QueryBusInterface;
 use InvalidArgumentException;
 
 trait BusContextTrait
 {
-    public function applicationCommandBus() : ApplicationCommandBusInterface
+    public function commandBus() : CommandBusInterface
     {
-        $bus = $this->getContainer()->get(ApplicationCommandBusInterface::class);
-        if ($bus instanceof ApplicationCommandBusInterface) {
+        $bus = $this->getContainer()->get(CommandBusInterface::class);
+        if ($bus instanceof CommandBusInterface) {
             return $bus;
         }
         throw new InvalidArgumentException();
     }
 
-    public function applicationQueryBus() : ApplicationQueryBusInterface
+    public function queryBus() : QueryBusInterface
     {
-        $bus = $this->getContainer()->get(ApplicationQueryBusInterface::class);
-        if ($bus instanceof ApplicationQueryBusInterface) {
+        $bus = $this->getContainer()->get(QueryBusInterface::class);
+        if ($bus instanceof QueryBusInterface) {
             return $bus;
         }
         throw new InvalidArgumentException();

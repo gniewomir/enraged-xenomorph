@@ -6,10 +6,32 @@ services:
         autowire: false
         autoconfigure: false
 
+    # INFRASTRUCTURE/BUS
+    Enraged\Xenomorph\Infrastructure\BUS\CommandBus:
+        class: Enraged\Xenomorph\Infrastructure\BUS\CommandBus
+        autowire: true
+        public: true
+    Enraged\Xenomorph\Infrastructure\BUS\QueryBus:
+        class: Enraged\Xenomorph\Infrastructure\BUS\QueryBus
+        autowire: true
+        public: true
+
     # INFRASTRUCTURE/CALENDAR
     Enraged\Xenomorph\Infrastructure\Calendar\InMemoryCalendar: ~
-    Enraged\Xenomorph\Application\Infrastructure\Calendar\ApplicationCalendarInterface: '@Enraged\Xenomorph\Infrastructure\Calendar\InMemoryCalendar'
-    Enraged\Xenomorph\Infrastructure\Calendar\InfrastructureCalendarInterface: '@Enraged\Xenomorph\Infrastructure\Calendar\InMemoryCalendar'
+    Enraged\Xenomorph\CalendarInterface: '@Enraged\Xenomorph\Infrastructure\Calendar\InMemoryCalendar'
+
+    # INFRASTRUCTURE/STORAGE
+    Enraged\Xenomorph\StorageFilesystemInterface:
+        class: Enraged\Xenomorph\Infrastructure\Storage\Filesystem\StorageFilesystem
+        public: true
+        arguments:
+          [ '@Enraged\Xenomorph\Infrastructure\Storage\Adapter\StorageAdapter' ]
+
+    Enraged\Xenomorph\TemporaryFilesystemInterface:
+        class: Enraged\Xenomorph\Infrastructure\Storage\Filesystem\TemporaryFilesystem
+        public: true
+        arguments:
+          [ '@Enraged\Xenomorph\Infrastructure\Storage\Adapter\TemporaryAdapter' ]
 
     # INFRASTRUCTURE/HTTP
     Enraged\Xenomorph\Infrastructure\HTTP\Client\HttpClientInterface:

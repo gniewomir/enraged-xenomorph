@@ -1,0 +1,22 @@
+layers:
+    -   name: Interactions
+        collectors:
+            -   type: bool
+                must:
+                    -   type: className
+                        regex: Enraged\\Xenomorph\\Interactions\\.*
+                must_not:
+                    -   type: className
+                        regex: Enraged\\Xenomorph\\Interactions\\.*Interface
+                    -   type: className
+                        regex: Enraged\\Xenomorph\\Interactions\\Web\\Query\\.*Model
+                    -   type: className
+                        regex: Enraged\\Xenomorph\\Interactions\\Web\\Query\\.*Query
+    -   name: Interactions/Web/Models
+        collectors:
+            -   type: className
+                regex: Enraged\\Xenomorph\\Interactions\\Web\\Query\\.*Model
+    -   name: Interactions/Web/Queries
+        collectors:
+            -   type: className
+                regex: Enraged\\Xenomorph\\Interactions\\Web\\Query\\.*Query

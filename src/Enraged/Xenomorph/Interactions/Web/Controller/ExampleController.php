@@ -5,13 +5,9 @@ declare(strict_types=1);
 namespace Enraged\Xenomorph\Interactions\Web\Controller;
 
 use Enraged\Xenomorph\Application\Command\Example\CreateDomainObjectCommand;
-use Enraged\Xenomorph\Application\Infrastructure\BUS\ApplicationCommandBusInterface;
-use Enraged\Xenomorph\Application\Infrastructure\BUS\ApplicationEventBusInterface;
-use Enraged\Xenomorph\Application\Infrastructure\Calendar\ApplicationCalendarInterface;
-use Enraged\Xenomorph\Application\Infrastructure\Storage\StorageFilesystemInterface;
-use Enraged\Xenomorph\Application\Infrastructure\Storage\TemporaryFilesystemInterface;
-use Enraged\Xenomorph\Application\Query\Example\GetDomainObjectQuery;
-use Enraged\Xenomorph\Application\QueryResult\Example\GetDomainObjectQueryResult;
+use Enraged\Xenomorph\CommandBusInterface;
+use Enraged\Xenomorph\Interactions\Web\Query\ShowDomainObjectQuery;
+use Enraged\Xenomorph\Interactions\Web\QueryResult\ShowDomainObjectQueryResult;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Uid\UuidV4;
@@ -20,22 +16,11 @@ class ExampleController
 {
     #[Route('/example', name: 'example_index')]
     public function indexHtml(
-        StorageFilesystemInterface $storage,
-        TemporaryFilesystemInterface $temporary,
-        ApplicationCommandBusInterface $application_command_bus,
-        ApplicationEventBusInterface $application_event_bus,
-        GetDomainObjectQueryResult $get_domain_object_query_result,
-        ApplicationCalendarInterface $application_calendar,
+        CommandBusInterface $application_command_bus,
+        ShowDomainObjectQueryResult $show_domain_object_query_result,
     ) : Response {
         $application_command_bus->command(new CreateDomainObjectCommand($id = (string) UuidV4::v4()));
 
-        return new Response(
-            var_export(
-                $get_domain_object_query_result(
-                    new GetDomainObjectQuery($id)
-                ),
-                true
-            )
-        );
+        return new Response(var_export($show_domain_object_query_result(new ShowDomainObjectQuery($id)), true));
     }
 }

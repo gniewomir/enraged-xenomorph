@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Enraged\Xenomorph\Application\Infrastructure\Storage;
+namespace Enraged\Xenomorph;
 
 use League\Flysystem\FilesystemReader;
 use League\Flysystem\FilesystemWriter;

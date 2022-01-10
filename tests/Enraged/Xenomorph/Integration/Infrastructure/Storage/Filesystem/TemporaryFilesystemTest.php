@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Enraged\Xenomorph\Integration\Infrastructure\Storage\Filesystem;
 
-use Enraged\Xenomorph\Infrastructure\Storage\Filesystem\TemporaryFilesystem;
+use Enraged\Xenomorph\TemporaryFilesystemInterface;
 use Tests\Enraged\Xenomorph\Integration\IntegrationTestCase;
 
 class TemporaryFilesystemTest extends IntegrationTestCase
@@ -13,7 +13,7 @@ class TemporaryFilesystemTest extends IntegrationTestCase
     {
         $subject = $this
             ->getContainer()
-            ->get(TemporaryFilesystem::class);
+            ->get(TemporaryFilesystemInterface::class);
         $subject->write('test.txt', $content = 'test');
         $this->assertEquals(
             $content,

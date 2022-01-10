@@ -15,7 +15,7 @@ class GetDomainObjectQueryResultTest extends IntegrationTestCase
     public function test_result()
     {
         $this
-            ->applicationCommandBus()
+            ->commandBus()
             ->command(
                 new CreateDomainObjectCommand(
                     (string) ($id = Uuid::v4())

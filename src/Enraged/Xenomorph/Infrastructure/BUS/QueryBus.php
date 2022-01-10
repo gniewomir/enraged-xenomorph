@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace Enraged\Xenomorph\Infrastructure\BUS;
 
-use Enraged\Xenomorph\Application\Infrastructure\BUS\ApplicationQueryBusInterface;
+use Enraged\Xenomorph\QueryBusInterface;
 use Symfony\Component\Messenger\HandleTrait;
 use Symfony\Component\Messenger\MessageBusInterface;
 
-class ApplicationQueryBus implements ApplicationQueryBusInterface
+class QueryBus implements QueryBusInterface
 {
     use HandleTrait;
 
-    public function __construct(MessageBusInterface $applicationQueryBus)
+    public function __construct(MessageBusInterface $queryBus)
     {
-        $this->messageBus = $applicationQueryBus;
+        $this->messageBus = $queryBus;
     }
 
     public function query(object $query) : mixed

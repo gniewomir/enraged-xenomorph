@@ -1,0 +1,40 @@
+layers:
+    -   name: Application
+        collectors:
+            -   type: bool
+                must:
+                    -   type: className
+                        regex: Enraged\\Xenomorph\\Application\\.*
+                must_not:
+                    -   type: className
+                        regex: Enraged\\Xenomorph\\Application\\.*Interface
+                    -   type: className
+                        regex: Enraged\\Xenomorph\\Application\\Command\\.*
+                    -   type: className
+                        regex: Enraged\\Xenomorph\\Application\\CommandHandler\\.*
+                    -   type: className
+                        regex: Enraged\\Xenomorph\\Application\\Query\\.*Query
+                    -   type: className
+                        regex: Enraged\\Xenomorph\\Application\\Query\\.*Model
+                    -   type: className
+                        regex: Enraged\\Xenomorph\\Application\\QueryHandler\\.*
+    -   name: Application/Commands
+        collectors:
+            -   type: className
+                regex: Enraged\\Xenomorph\\Application\\Command\\.*
+    -   name: Application/CommandHandlers
+        collectors:
+            -   type: className
+                regex: Enraged\\Xenomorph\\Application\\CommandHandler\\.*
+    -   name: Application/Queries
+        collectors:
+            -   type: className
+                regex: Enraged\\Xenomorph\\Application\\Query\\.*Query
+    -   name: Application/Models
+        collectors:
+            -   type: className
+                regex: Enraged\\Xenomorph\\Application\\Query\\.*Model
+    -   name: Application/QueryHandlers
+        collectors:
+            -   type: className
+                regex: Enraged\\Xenomorph\\Application\\QueryHandler\\.*

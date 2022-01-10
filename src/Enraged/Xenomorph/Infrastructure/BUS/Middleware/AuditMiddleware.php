@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Enraged\Xenomorph\Infrastructure\BUS\Middleware;
 
-use Enraged\Xenomorph\Infrastructure\Calendar\InfrastructureCalendarInterface;
+use Enraged\Xenomorph\CalendarInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\Middleware\MiddlewareInterface;
@@ -17,7 +17,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 class AuditMiddleware implements MiddlewareInterface
 {
-    protected InfrastructureCalendarInterface $calendar;
+    protected CalendarInterface $calendar;
     protected LoggerInterface $bus_audit_logger;
     protected SerializerInterface $serializer;
     protected Security $security;

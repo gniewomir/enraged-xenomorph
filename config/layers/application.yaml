@@ -23,9 +23,7 @@ services:
         autowire: true
         autoconfigure: false
         resource: '%kernel.project_dir%/src/Enraged/Xenomorph/Application/CommandHandler/'
-        tags: [ { name: 'messenger.message_handler', bus: 'application_command.bus' } ]
-
-    Enraged\Xenomorph\Application\Infrastructure\BUS\ApplicationCommandBusInterface: '@Enraged\Xenomorph\Infrastructure\BUS\ApplicationCommandBus'
+        tags: [ { name: 'messenger.message_handler', bus: 'command.bus' } ]
 
     # INFRASTRUCTURE/QUERY/BUS
     application_queries:
@@ -34,20 +32,18 @@ services:
         autoconfigure: false
         resource: '%kernel.project_dir%/src/Enraged/Xenomorph/Application/Query/'
 
-    application_query_handlers:
+    query_handlers:
         namespace: Enraged\Xenomorph\Application\QueryHandler\
         autowire: true
         autoconfigure: false
         resource: '%kernel.project_dir%/src/Enraged/Xenomorph/Application/QueryHandler/'
-        tags: [ { name: 'messenger.message_handler', bus: 'application_query.bus' } ]
+        tags: [ { name: 'messenger.message_handler', bus: 'query.bus' } ]
 
     application_query_result:
         namespace: Enraged\Xenomorph\Application\QueryResult\
         autowire: true
         autoconfigure: false
         resource: '%kernel.project_dir%/src/Enraged/Xenomorph/Application/QueryResult/**/*Result.php'
-
-    Enraged\Xenomorph\Application\Infrastructure\BUS\ApplicationQueryBusInterface: '@Enraged\Xenomorph\Infrastructure\BUS\ApplicationQueryBus'
 
     # INFRASTRUCTURE/EVENT/BUS
     application_events:
@@ -65,12 +61,9 @@ services:
 
     Enraged\Xenomorph\Application\Infrastructure\BUS\ApplicationEventBusInterface: '@Enraged\Xenomorph\Infrastructure\BUS\ApplicationEventBus'
 
-    # INFRASTRUCTURE/CALENDAR
-    Enraged\Xenomorph\Application\Infrastructure\Calendar\ApplicationCalendarInterface: '@Enraged\Xenomorph\Infrastructure\Calendar\Calendar'
-
     # INFRASTRUCTURE/STORAGE
-    Enraged\Xenomorph\Application\Infrastructure\Storage\StorageFilesystemInterface: '@Enraged\Xenomorph\Infrastructure\Storage\Filesystem\StorageFilesystem'
-    Enraged\Xenomorph\Application\Infrastructure\Storage\TemporaryFilesystemInterface: '@Enraged\Xenomorph\Infrastructure\Storage\Filesystem\TemporaryFilesystem'
+    Enraged\Xenomorph\StorageFilesystemInterface: '@Enraged\Xenomorph\Infrastructure\Storage\Filesystem\StorageFilesystem'
+    Enraged\Xenomorph\TemporaryFilesystemInterface: '@Enraged\Xenomorph\Infrastructure\Storage\Filesystem\TemporaryFilesystem'
 
     # INFRASTRUCTURE/DBAL
     Enraged\Xenomorph\Application\Infrastructure\DBAL\Example\DomainObjectDbalInterface: '@Enraged\Xenomorph\Infrastructure\DBAL\Example\DomainObjectDbal'

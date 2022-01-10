@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Enraged\Xenomorph\Application\Infrastructure\BUS;
+namespace Enraged\Xenomorph;
 
 use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\Stamp\StampInterface;
 
-interface ApplicationCommandBusInterface
+interface CommandBusInterface
 {
     /**
      * @param StampInterface[] $stamps

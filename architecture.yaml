@@ -1,305 +1,77 @@
 paths:
     - ./src
+imports:
+    - docs/layers/global.yaml
+    - docs/layers/interactions.yaml
+    - docs/layers/application.yaml
+    - docs/layers/domain.yaml
+    - docs/layers/infrastructure.yaml
 formatters:
     graphviz:
+        hidden_layers:
+            - NonV4TypeUuid
+            - Application/Models
+            - Interactions/Web/Models
         groups:
+            Iteractions:
+                - Interactions
+                - Interactions/Web/Queries
+                - Interactions/Web/Models
             Application:
+                - Application/Commands
+                - Application/Queries
+                - Application/Models
+                - Application/CommandHandlers
+                - Application/QueryHandlers
                 - Application
-                - Application Exceptions
-                - Application Infrastructure Interfaces
-                - Application Command
-                - Application Command Handlers
-                - Application Query
-                - Application Model
-                - Application Query Result
-            Infrastructure:
-                - Infrastructure
-                - Infrastructure Exceptions
-                - Infrastructure Domain Specific
-                - Infrastructure Calendar
-                - Time
             Domain:
                 - Domain
-                - Domain Exceptions
-                - Domain Services
-                - Domain Specifications
-                - Domain Infrastructure Interfaces
-            Interactions:
-                - Interactions
-                - Interactions Exceptions
-            Framework:
+                - Domain/Specifications
+                - Domain/Services
+            Infrastructure:
+                - Infrastructure
+                - Infrastructure/Domain
+                - Infrastructure/Calendar
+            Global:
+                - Time
                 - Symfony
-layers:
-    # CONSTRAINTS
-    -
-        # Make DateTime a separate layer to ensure that only Infrastructure Calendar has access to it.
-        # It gives us ability to change time when testing with predictable results
-        name: Time
-        collectors:
-            - type: bool
-              must:
-                  -
-                      type: className
-                      regex: DateTime
-                  -
-                      type: className
-                      regex: DateTimeImmutable
-    -
-        # Forbid using UUID other than V4 (random) unless explicitly allowed
-        name: NonV4TypeUuid
-        collectors:
-            - type: bool
-              must:
-                - type: className
-                  regex: Symfony\\Component\\Uid\\Uuid.*
-              must_not:
-                - type: className
-                  regex: Symfony\\Component\\Uid\\UuidV4
-    -
-        # Limit references to framework to ensure that Application and Domain do not depend on it leaving it to Interactions and Infrastructure
-        name: Symfony
-        collectors:
-            - type: bool
-              must:
-                  - type: className
-                    regex: Symfony\\.*
-              must_not:
-                  - type: className
-                    regex: Symfony\\Component\\Uid\\.*
-                  - type: className
-                    regex: Symfony\\Component\\Messenger\\Envelope
-                  - type: className
-                    regex: Symfony\\Component\\Messenger\\Stamp\\StampInterface
-
-    # UI
-    -
-        name: Interactions
-        collectors:
-            - type: bool
-              must:
-                - type: className
-                  regex: Enraged\\Xenomorph\\Interactions\\.*
-              must_not:
-                - type: className
-                  regex: Enraged\\Xenomorph\\Interactions\\Exception\\.*
-    -
-        name: Interactions Exceptions
-        collectors:
-            - type: className
-              regex: Enraged\\Xenomorph\\Interactions\\Exception\\.*
-
-    # APPLICATION
-    -
-        name: Application
-        collectors:
-            - type: bool
-              must:
-                  - type: className
-                    regex: Enraged\\Xenomorph\\Application\\.*
-              must_not:
-                  - type: className
-                    regex: Enraged\\Xenomorph\\Application\\Command\\.*Command
-                  - type: className
-                    regex: Enraged\\Xenomorph\\Application\\CommandHandler\\.*Handler
-                  - type: className
-                    regex: Enraged\\Xenomorph\\Application\\Query\\.*Query
-                  - type: className
-                    regex: Enraged\\Xenomorph\\Application\\Query\\.*Model
-                  - type: className
-                    regex: Enraged\\Xenomorph\\Application\\QueryResult\\.*Result
-                  - type: className
-                    regex: Enraged\\Xenomorph\\Application\\Infrastructure\\.*Interface
-                  - type: className
-                    regex: Enraged\\Xenomorph\\Application\\Exception\\.*
-    -
-        name: Application Exceptions
-        collectors:
-            - type: className
-              regex: Enraged\\Xenomorph\\Application\\Exception\\.*
-    -
-        name: Application Infrastructure Interfaces
-        collectors:
-            - type: className
-              regex: Enraged\\Xenomorph\\Application\\Infrastructure\\.*Interface
-    -
-        name: Application Command
-        collectors:
-            - type: className
-              regex: Enraged\\Xenomorph\\Application\\Command\\.*Command
-    -
-        name: Application Command Handlers
-        collectors:
-            - type: className
-              regex: Enraged\\Xenomorph\\Application\\CommandHandler\\.*Handler
-    -
-        name: Application Query
-        collectors:
-            - type: className
-              regex: Enraged\\Xenomorph\\Application\\Query\\.*Query
-    -
-        name: Application Model
-        collectors:
-            - type: className
-              regex: Enraged\\Xenomorph\\Application\\Query\\.*Model
-    -
-        name: Application Query Result
-        collectors:
-            - type: className
-              regex: Enraged\\Xenomorph\\Application\\QueryResult\\.*Result
-
-    # INFRASTRUCTURE
-    -
-        name: Infrastructure
-        collectors:
-            - type: bool
-              must:
-                - type: className
-                  regex: Enraged\\Xenomorph\\Infrastructure\\.*
-              must_not:
-                - type: className
-                  regex: Enraged\\Xenomorph\\Infrastructure\\Calendar\\.*
-                - type: className
-                  regex: Enraged\\Xenomorph\\Infrastructure\\ORM\\.*
-                - type: className
-                  regex: Enraged\\Xenomorph\\Infrastructure\\Exception\\.*
-    -
-        name: Infrastructure Exceptions
-        collectors:
-            - type: className
-              regex: Enraged\\Xenomorph\\Infrastructure\\Exception\\.*
-    -
-        name: Infrastructure Domain Specific
-        collectors:
-            - type: className
-              regex: Enraged\\Xenomorph\\Infrastructure\\ORM\\.*
-    -
-        name: Infrastructure Calendar
-        collectors:
-            - type: bool
-              must:
-                  - type: className
-                    regex: Enraged\\Xenomorph\\Infrastructure\\Calendar\\.*
-
-    # DOMAIN
-    -
-        name: Domain
-        collectors:
-            - type: bool
-              must:
-                  - type: className
-                    regex: Enraged\\Xenomorph\\Domain\\.*
-              must_not:
-                  - type: className
-                    regex: Enraged\\Xenomorph\\Domain\\.*Interface
-                  - type: className
-                    regex: Enraged\\Xenomorph\\Domain\\.*Specification
-                  - type: className
-                    regex: Enraged\\Xenomorph\\Domain\\.*Service
-                  - type: className
-                    regex: Enraged\\Xenomorph\\Domain\\Exception\\.*
-    -
-        name: Domain Exceptions
-        collectors:
-            - type: className
-              regex: Enraged\\Xenomorph\\Domain\\Exception\\.*
-    -
-        name: Domain Infrastructure Interfaces
-        collectors:
-            - type: className
-              regex: Enraged\\Xenomorph\\Application\\Domain\\.*Interface
-    -
-        name: Domain Services
-        collectors:
-            - type: className
-              regex: Enraged\\Xenomorph\\Application\\Domain\\.*Service
-    -
-        name: Domain Specifications
-        collectors:
-            - type: className
-              regex: Enraged\\Xenomorph\\Application\\Domain\\.*Specification
 ruleset:
-    # UI
+    Time:
     Interactions:
-        - Application Command
-        - Application Query
-        - Application Model
-        - Application Query Result
-        - Application Infrastructure Interfaces
+        - Application/Commands
+        - Interactions/Web/Queries
+        - Interactions/Web/Models
         - Symfony
-        - Application Exceptions
-        - Interactions Exceptions
-        - Infrastructure Exceptions
-        - Domain Exceptions
-
-    # APPLICATION
     Application:
-        - Application Command
-        - Application Query
-        - Application Query Result
-        - Application Model
-        - Application Infrastructure Interfaces
-        - Application Exceptions
-    Application Exceptions:
-    Application Infrastructure Interfaces:
-        - Application Model
-    Application Command:
-    Application Command Handlers:
-        - Application Infrastructure Interfaces
-        - Application Command
-        - Application Query
-        - Application Model
-        - Application Query Result
-        - Domain Infrastructure Interfaces
-        - Domain
-        - Domain Specifications
-        - Domain Services
-        - Application Exceptions
-        - Infrastructure Exceptions
-    Application Query:
-    Application Model:
-    Application Query Result:
-        - Application Query
-        - Application Model
-        - Application Infrastructure Interfaces
-        - Application Exceptions
-        - Infrastructure Exceptions
-
-    # Infrastructure
-    Infrastructure:
-        - Infrastructure Calendar
-        - Application Infrastructure Interfaces
-        - Application Query
-        - Application Model
-        - Symfony
-        - Infrastructure Exceptions
-    Infrastructure Exceptions:
-    Infrastructure Domain Specific:
-        - Domain
-        - Domain Infrastructure Interfaces
-        - Infrastructure Exceptions
-    Infrastructure Calendar:
-        - Application Infrastructure Interfaces
-        - Domain Infrastructure Interfaces
+        - Application/Commands
+        - Application/Queries
+        - Application/Models
         - Infrastructure
-        - Infrastructure Exceptions
+    Application/CommandHandlers:
+        - +Application
+        - +Domain
+    Application/Queries:
+    Application/QueryHandlers:
+        - Application
+        - Application/Queries
+        - Application/Models
+        - Interactions/Web/Queries
+        - Interactions/Web/Models
+        - Infrastructure
+    Infrastructure:
+        - Application/Models
+        - Symfony
+    Infrastructure/Domain:
+        - Domain
+        - Infrastructure
+        - Symfony
+    Infrastructure/Calendar:
+        - Infrastructure
         - Time
-
-    # DOMAIN
     Domain:
-        - Domain Infrastructure Interfaces
-        - Domain Specifications
-        - Domain Exceptions
-    Domain Exceptions:
-    Domain Infrastructure Interfaces:
-        - Domain
-    Domain Specifications:
-        - Domain
-        - Domain Infrastructure Interfaces
-        - Domain Exceptions
-        - Infrastructure Exceptions
-    Domain Services:
-        - Domain
-        - Domain Infrastructure Interfaces
-        - Domain Specifications
-        - Domain Exceptions
-        - Infrastructure Exceptions
+        - Domain/Specifications
+        - Domain/Services
+    Domain/Specifications:
+        - +Domain
+    Domain/Services:
+        - +Domain

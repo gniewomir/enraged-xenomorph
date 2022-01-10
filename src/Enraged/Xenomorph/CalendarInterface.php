@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Enraged\Xenomorph\Domain;
+namespace Enraged\Xenomorph;
 
 use DateTimeInterface;
 
-interface DomainCalendarInterface
+interface CalendarInterface
 {
     public function now() : DateTimeInterface;
 }

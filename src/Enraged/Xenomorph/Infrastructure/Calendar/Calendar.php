@@ -6,9 +6,10 @@ namespace Enraged\Xenomorph\Infrastructure\Calendar;
 
 use DateTimeImmutable;
 use DateTimeInterface;
+use Enraged\Xenomorph\CalendarInterface;
 use Enraged\Xenomorph\Infrastructure\Assertion\InfrastructureAssertion;
 
-class Calendar implements \Enraged\Xenomorph\Application\Infrastructure\Calendar\ApplicationCalendarInterface, \Enraged\Xenomorph\Domain\DomainCalendarInterface, InfrastructureCalendarInterface
+class Calendar implements CalendarInterface
 {
     private const ACCEPTED_TIMEZONE = 'UTC';
 

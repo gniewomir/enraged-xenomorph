@@ -1,0 +1,22 @@
+layers:
+    -   name: Infrastructure
+        collectors:
+            -   type: bool
+                must:
+                    -   type: className
+                        regex: Enraged\\Xenomorph\\Infrastructure\\.*
+                must_not:
+                    -   type: className
+                        regex: Enraged\\Xenomorph\\Infrastructure\\.*Interface
+                    -   type: className
+                        regex: Enraged\\Xenomorph\\Infrastructure\\ORM\\.*
+                    -   type: className
+                        regex: Enraged\\Xenomorph\\Infrastructure\\Calendar\\.*
+    -   name: Infrastructure/Domain
+        collectors:
+            -   type: className
+                regex: Enraged\\Xenomorph\\Infrastructure\\ORM\\.*
+    -   name: Infrastructure/Calendar
+        collectors:
+            -   type: className
+                regex: Enraged\\Xenomorph\\Infrastructure\\Calendar\\.*

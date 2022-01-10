@@ -1,0 +1,22 @@
+layers:
+    -   name: Domain
+        collectors:
+            -   type: bool
+                must:
+                    -   type: className
+                        regex: Enraged\\Xenomorph\\Domain\\.*
+                must_not:
+                    -   type: className
+                        regex: Enraged\\Xenomorph\\Domain\\.*Interface
+                    -   type: className
+                        regex: Enraged\\Xenomorph\\Domain\\.*Specification
+                    -   type: className
+                        regex: Enraged\\Xenomorph\\Domain\\.*Service
+    -   name: Domain/Services
+        collectors:
+            -   type: className
+                regex: Enraged\\Xenomorph\\Domain\\.*Service
+    -   name: Domain/Specifications
+        collectors:
+            -   type: className
+                regex: Enraged\\Xenomorph\\Domain\\.*Specification

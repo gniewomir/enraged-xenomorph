@@ -1,0 +1,18 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Enraged\Xenomorph\Interactions\Web\Query\Model;
+
+class DomainObjectModel
+{
+    public function __construct(
+        private string $id
+    ) {
+    }
+
+    public function getId() : string
+    {
+        return $this->id;
+    }
+}

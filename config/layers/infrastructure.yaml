@@ -10,9 +10,8 @@ services:
             - '%kernel.project_dir%/src/Enraged/Xenomorph/Infrastructure/Assertion/'
             - '%kernel.project_dir%/src/Enraged/Xenomorph/Infrastructure/Exception/'
 
-    # INFRASTRUCTURE/CALENDAR
+    # CALENDAR
     Enraged\Xenomorph\Infrastructure\Calendar\Calendar: ~
-    Enraged\Xenomorph\Infrastructure\Calendar\InfrastructureCalendarInterface: '@Enraged\Xenomorph\Infrastructure\Calendar\Calendar'
 
     # HTTP
     Symfony\Component\HttpClient\TraceableHttpClient: ~
