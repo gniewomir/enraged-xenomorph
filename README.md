@@ -12,9 +12,12 @@ This project is very opinionated attempt to compile a bit of experience, few goo
 
 # Architecture
 
-![Architecture](/docs/architecture.png?raw=true "Architecture")
+Described in architecture.yaml (deptrac configuration)
 
-Described in depfile.yaml (deptrac configuration)
+## Dependency graph 
+
+![Architecture](/docs/architecture.png?raw=true "Architecture")
+(disclaimer: graph is generated automatically and defined not only by deptrac configuration but also by what dependencies are present at this time - not intended)
 
 ## Installation
 
