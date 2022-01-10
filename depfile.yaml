@@ -26,7 +26,21 @@ layers:
               must_not:
                 - type: className
                   regex: Symfony\\Component\\Uid\\UuidV4
-
+    -
+        # Limit references to framework to ensure that Application and Domain do not depend on it leaving it ti Interactions and Infrastructure
+        name: FrameworkRestricted
+        collectors:
+            - type: bool
+              must:
+                  - type: className
+                    regex: Symfony\\.*
+              must_not:
+                  - type: className
+                    regex: Symfony\\Component\\Uid\\.*
+                  - type: className
+                    regex: Symfony\\Component\\Messenger\\Envelope
+                  - type: className
+                    regex: Symfony\\Component\\Messenger\\Stamp\\StampInterface
     # UI
     -
         name: Interactions
@@ -143,6 +157,7 @@ ruleset:
         - ApplicationQueryModel
         - ApplicationQueryResult
         - ApplicationInfrastructureInterfaces
+        - FrameworkRestricted
 
     # APPLICATION
     Application:
@@ -179,6 +194,7 @@ ruleset:
         - ApplicationQueryModel
         - DomainObjects
         - DomainInterfaces
+        - FrameworkRestricted
     InfrastructureCalendar:
         - ApplicationInfrastructureInterfaces
         - DomainInterfaces
