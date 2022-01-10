@@ -3,9 +3,9 @@ paths:
 layers:
     # CONSTRAINTS
     -
-        # Make DateTime a separate layer to ensure that only InfrastructureCalendar has access to it.
+        # Make DateTime a separate layer to ensure that only Infrastructure Calendar has access to it.
         # It gives us ability to change time when testing with predictable results
-        name: DateTime
+        name: Time
         collectors:
             - type: bool
               must:
@@ -28,7 +28,7 @@ layers:
                   regex: Symfony\\Component\\Uid\\UuidV4
     -
         # Limit references to framework to ensure that Application and Domain do not depend on it leaving it to Interactions and Infrastructure
-        name: FrameworkRestricted
+        name: Symfony
         collectors:
             - type: bool
               must:
@@ -71,32 +71,32 @@ layers:
                   - type: className
                     regex: Enraged\\Xenomorph\\Application\\Infrastructure\\.*Interface
     -
-        name: ApplicationInfrastructureInterfaces
+        name: Application Infrastructure Interfaces
         collectors:
             - type: className
               regex: Enraged\\Xenomorph\\Application\\Infrastructure\\.*Interface
     -
-        name: ApplicationCommand
+        name: Application Command
         collectors:
             - type: className
               regex: Enraged\\Xenomorph\\Application\\Command\\.*Command
     -
-        name: ApplicationCommandHandlers
+        name: Application Command Handlers
         collectors:
             - type: className
               regex: Enraged\\Xenomorph\\Application\\CommandHandler\\.*Handler
     -
-        name: ApplicationQuery
+        name: Application Query
         collectors:
             - type: className
               regex: Enraged\\Xenomorph\\Application\\Query\\.*Query
     -
-        name: ApplicationQueryModel
+        name: Application Model
         collectors:
             - type: className
               regex: Enraged\\Xenomorph\\Application\\Query\\.*Model
     -
-        name: ApplicationQueryResult
+        name: Application Query Result
         collectors:
             - type: className
               regex: Enraged\\Xenomorph\\Application\\QueryResult\\.*Result
@@ -113,7 +113,7 @@ layers:
                 - type: className
                   regex: Enraged\\Xenomorph\\Infrastructure\\Calendar\\.*
     -
-        name: InfrastructureCalendar
+        name: Infrastructure Calendar
         collectors:
             - type: bool
               must:
@@ -122,7 +122,7 @@ layers:
 
     # DOMAIN
     -
-        name: DomainObjects
+        name: Domain Objects
         collectors:
             - type: bool
               must:
@@ -136,82 +136,82 @@ layers:
                   - type: className
                     regex: Enraged\\Xenomorph\\Domain\\.*Service
     -
-        name: DomainInterfaces
+        name: Domain Infrastructure Interfaces
         collectors:
             - type: className
               regex: Enraged\\Xenomorph\\Application\\Domain\\.*Interface
     -
-        name: DomainServices
+        name: Domain Services
         collectors:
             - type: className
               regex: Enraged\\Xenomorph\\Application\\Domain\\.*Service
     -
-        name: DomainSpecifications
+        name: Domain Specifications
         collectors:
             - type: className
               regex: Enraged\\Xenomorph\\Application\\Domain\\.*Specification
 ruleset:
     # UI
     Interactions:
-        - ApplicationCommand
-        - ApplicationQuery
-        - ApplicationQueryModel
-        - ApplicationQueryResult
-        - ApplicationInfrastructureInterfaces
-        - FrameworkRestricted
+        - Application Command
+        - Application Query
+        - Application Model
+        - Application Query Result
+        - Application Infrastructure Interfaces
+        - Symfony
 
     # APPLICATION
     Application:
-        - ApplicationCommand
-        - ApplicationQuery
-        - ApplicationQueryResult
-        - ApplicationQueryModel
-        - ApplicationInfrastructureInterfaces
-    ApplicationInfrastructureInterfaces:
-        - ApplicationQueryModel
-    ApplicationCommand:
-    ApplicationCommandHandlers:
-        - ApplicationInfrastructureInterfaces
-        - ApplicationCommand
-        - ApplicationQuery
-        - ApplicationQueryModel
-        - ApplicationQueryResult
-        - DomainInterfaces
-        - DomainObjects
-        - DomainSpecifications
-        - DomainServices
-    ApplicationQuery:
-    ApplicationQueryModel:
-    ApplicationQueryResult:
-        - ApplicationQuery
-        - ApplicationQueryModel
-        - ApplicationInfrastructureInterfaces
+        - Application Command
+        - Application Query
+        - Application Query Result
+        - Application Model
+        - Application Infrastructure Interfaces
+    Application Infrastructure Interfaces:
+        - Application Model
+    Application Command:
+    Application Command Handlers:
+        - Application Infrastructure Interfaces
+        - Application Command
+        - Application Query
+        - Application Model
+        - Application Query Result
+        - Domain Infrastructure Interfaces
+        - Domain Objects
+        - Domain Specifications
+        - Domain Services
+    Application Query:
+    Application Model:
+    Application Query Result:
+        - Application Query
+        - Application Model
+        - Application Infrastructure Interfaces
 
     # Infrastructure
     Infrastructure:
-        - InfrastructureCalendar
-        - ApplicationInfrastructureInterfaces
-        - ApplicationQuery
-        - ApplicationQueryModel
-        - DomainObjects
-        - DomainInterfaces
-        - FrameworkRestricted
-    InfrastructureCalendar:
-        - ApplicationInfrastructureInterfaces
-        - DomainInterfaces
+        - Infrastructure Calendar
+        - Application Infrastructure Interfaces
+        - Application Query
+        - Application Model
+        - Domain Objects
+        - Domain Infrastructure Interfaces
+        - Symfony
+    Infrastructure Calendar:
+        - Application Infrastructure Interfaces
+        - Domain Infrastructure Interfaces
         - Infrastructure
-        - DateTime
+        - Time
 
     # DOMAIN
-    DomainObjects:
-        - DomainInterfaces
-        - DomainSpecifications
-    DomainInterfaces:
-        - DomainObjects
-    DomainSpecifications:
-        - DomainObjects
-        - DomainInterfaces
-    DomainServices:
-        - DomainObjects
-        - DomainInterfaces
-        - DomainSpecifications
+    Domain Objects:
+        - Domain Infrastructure Interfaces
+        - Domain Specifications
+    Domain Infrastructure Interfaces:
+        - Domain Objects
+    Domain Specifications:
+        - Domain Objects
+        - Domain Infrastructure Interfaces
+    Domain Services:
+        - Domain Objects
+        - Domain Infrastructure Interfaces
+        - Domain Specifications
