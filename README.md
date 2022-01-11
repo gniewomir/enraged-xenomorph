@@ -37,6 +37,7 @@ The project is dockerized and configured to work with docker-compose
 
 * Setup branching to not work on main
 * Figure out docker layer caching in Github actions
+  * [Build images on GitHub Actions with Docker layer caching](https://evilmartians.com/chronicles/build-images-on-github-actions-with-docker-layer-caching)
 * Setup Github action for testing 
 * Setup Github action for deployment
 * Replace examples with ie. ISIN fetching to get a better feel on what works and what not 
