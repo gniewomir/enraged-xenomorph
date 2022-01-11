@@ -8,9 +8,6 @@ use DateTimeInterface;
 use Enraged\Xenomorph\Domain\Assertion\DomainAssertion;
 use Symfony\Component\Uid\UuidV4;
 
-/**
- * Not autowired as service.
- */
 class DomainObject
 {
     private ?DateTimeInterface $updated_at = null;

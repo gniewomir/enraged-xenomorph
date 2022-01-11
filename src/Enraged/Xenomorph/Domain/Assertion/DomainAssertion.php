@@ -4,31 +4,20 @@ declare(strict_types=1);
 
 namespace Enraged\Xenomorph\Domain\Assertion;
 
-use Assert\InvalidArgumentException;
-use Enraged\Packages\Assertion\Assertion;
 use Enraged\Xenomorph\Domain\Exception\DomainInvalidAssertionException;
+use Webmozart\Assert\Assert;
 
-class DomainAssertion extends Assertion
+class DomainAssertion extends Assert
 {
     /**
-     * Helper method that handles building the assertion failure exceptions.
-     * They are returned from this method so that the stack trace still shows
-     * the assertions method.
+     * @param string $message
      *
-     * @param mixed                $value
-     * @param string|callable|null $message
-     * @param int                  $code
-     * @param null                 $propertyPath
-     * @param mixed[]              $constraints
+     * @throws DomainInvalidAssertionException
+     *
+     * @psalm-pure this method is not supposed to perform side-effects
      */
-    protected static function createException($value, $message, $code, $propertyPath = null, array $constraints = []) : DomainInvalidAssertionException
+    protected static function reportInvalidArgument($message) : void
     {
-        $exception = new InvalidArgumentException($message, $code, $propertyPath, $value, $constraints);
-
-        return new DomainInvalidAssertionException(
-            $exception->getMessage(),
-            0,
-            $exception
-        );
+        throw new DomainInvalidAssertionException($message);
     }
 }

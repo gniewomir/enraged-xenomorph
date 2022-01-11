@@ -26,7 +26,7 @@ services:
         class: 'Enraged\Xenomorph\Infrastructure\Storage\Adapter\StorageAdapter'
         autowire: false
         arguments:
-            - '/app/var/storage/storage'
+            - '/app/var/storage/%env(APP_ENV)%/storage'
 
     Enraged\Xenomorph\Infrastructure\Storage\Filesystem\StorageFilesystem:
         class: 'Enraged\Xenomorph\Infrastructure\Storage\Filesystem\StorageFilesystem'
@@ -38,7 +38,7 @@ services:
         class: 'Enraged\Xenomorph\Infrastructure\Storage\Adapter\TemporaryAdapter'
         autowire: false
         arguments:
-            - '/app/var/storage/temporary'
+            - '/app/var/storage/%env(APP_ENV)%/temporary'
 
     Enraged\Xenomorph\Infrastructure\Storage\Filesystem\TemporaryFilesystem:
         class: 'Enraged\Xenomorph\Infrastructure\Storage\Filesystem\TemporaryFilesystem'

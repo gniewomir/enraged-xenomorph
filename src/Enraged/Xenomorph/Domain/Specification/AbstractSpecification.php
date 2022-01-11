@@ -30,9 +30,9 @@ abstract class AbstractSpecification implements SpecificationInterface
         return true;
     }
 
-    public function lastError() : ?string
+    public function lastError() : string
     {
-        return $this->error;
+        return $this->error ?? '';
     }
 
     public function lastCandidate() : mixed
