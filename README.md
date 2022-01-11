@@ -32,3 +32,12 @@ The project is dockerized and configured to work with docker-compose
      - inside run `composer test`
  - app should be accessible on `http://localhost:3160`
  - play with it running `composer quality` from time to time
+
+# TODO
+
+* Setup branching to not work on main
+* Figure out docker layer caching in Github actions
+* Setup Github action for testing 
+* Setup Github action for deployment
+* Replace examples with ie. ISIN fetching to get a better feel on what works and what not 
+* Implement security to get a better feel on what works and what not
