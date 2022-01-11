@@ -10,7 +10,6 @@ services:
         autowire: false
         autoconfigure: false
 
-
     # CALENDAR
     Enraged\Xenomorph\CalendarInterface: '@Enraged\Xenomorph\Infrastructure\Calendar\Calendar'
 

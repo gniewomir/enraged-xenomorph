@@ -2,10 +2,15 @@ imports:
     - { resource: layers/ }
 
 services:
+    # INFRASTRUCTURE/FAKER
+    Enraged\Xenomorph\Application\Infrastructure\Faker\FakerInterface: '@Enraged\Xenomorph\Infrastructure\Faker\Faker'
+
+    # APPLICATION/FIXTURES
     application_fixtures:
         namespace: Enraged\Xenomorph\Application\Fixtures\
         resource: '%kernel.project_dir%/src/Enraged/Xenomorph/Application/Fixtures/*Fixtures.php'
         autowire: true
+        autoconfigure: true
 
     application_fixtures_contexts:
         namespace: Enraged\Xenomorph\Application\Fixtures\Context\
@@ -14,10 +19,7 @@ services:
         shared: false
         lazy: true
 
-    # FIXTURES
     Enraged\Xenomorph\Application\Fixtures\DevFixtures:
         public: true
         autowire: true
-
-    # INFRASTRUCTURE/FAKER
-    Enraged\Xenomorph\Application\Infrastructure\Faker\FakerInterface: '@Enraged\Xenomorph\Infrastructure\Faker\Faker'
+        autoconfigure: true

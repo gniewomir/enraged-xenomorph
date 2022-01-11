@@ -4,7 +4,7 @@ services:
   application:
     build:
       context: ./
-      dockerfile: docker/Dockerfile.dev
+      dockerfile: docker/Dockerfile
 ###> doctrine/doctrine-bundle ###
   database:
     ports:

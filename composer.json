@@ -110,7 +110,8 @@
             "@auto-scripts"
         ],
         "project:reset": [
-            "@auto-scripts",
+            "@cache:clear:dev",
+            "@cache:clear:test",
             "@database:reset",
             "@fixtures:dev"
         ],
@@ -167,7 +168,7 @@
             "bin/console doctrine:migrations:migrate -n --env=prod"
         ],
         "fixtures:dev": [
-            "bin/console doctrine:fixtures:load --group=dev"
+            "bin/console doctrine:fixtures:load --group=dev --env=dev"
         ],
         "quality": [
             "@quality:fix",

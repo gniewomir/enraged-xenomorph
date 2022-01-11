@@ -45,6 +45,7 @@ services:
         namespace: Enraged\Xenomorph\Application\Fixtures\
         resource: '%kernel.project_dir%/src/Enraged/Xenomorph/Application/Fixtures/*Fixtures.php'
         autowire: true
+        autoconfigure: true
 
     application_fixtures_contexts:
         namespace: Enraged\Xenomorph\Application\Fixtures\Context\
@@ -56,3 +57,4 @@ services:
     Enraged\Xenomorph\Application\Fixtures\DevFixtures:
         public: true
         autowire: true
+        autoconfigure: true
