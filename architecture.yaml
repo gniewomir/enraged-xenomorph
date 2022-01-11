@@ -13,7 +13,7 @@ formatters:
             - Application/Models
             - Interactions/Web/Models
             - Application/Fixtures
-            - Symfony
+            - Framework
         groups:
             Iteractions:
                 - Interactions
@@ -36,15 +36,15 @@ formatters:
                 - Infrastructure/Calendar
             Global:
                 - Time
-                - Symfony
-                - Doctrine
+                - Framework
+                - Database
 ruleset:
     Time:
     Interactions:
         - Application/Commands
         - Interactions/Web/Queries
         - Interactions/Web/Models
-        - Symfony
+        - Framework
     Application:
         - Application/Commands
         - Application/Queries
@@ -67,16 +67,16 @@ ruleset:
         - Application/Queries
         - Application/Models
         - Infrastructure
-        - Doctrine
+        - Database
     Infrastructure:
         - Application/Models
-        - Symfony
-        - Doctrine
+        - Framework
+        - Database
     Infrastructure/Domain:
         - Domain
         - Infrastructure
-        - Symfony
-        - Doctrine
+        - Framework
+        - Database
     Infrastructure/Calendar:
         - Infrastructure
         - Time
