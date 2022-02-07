@@ -160,6 +160,9 @@
     "league/mime-type-detection": {
         "version": "1.9.0"
     },
+    "moneyphp/money": {
+        "version": "v3.3.1"
+    },
     "monolog/monolog": {
         "version": "2.1.1"
     },

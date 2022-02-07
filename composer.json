@@ -14,6 +14,7 @@
         "doctrine/orm": "^2.10",
         "league/flysystem": "^2.4",
         "league/flysystem-memory": "^2.0",
+        "moneyphp/money": "^3.3",
         "phpdocumentor/reflection-docblock": "^5.3",
         "qossmic/deptrac-shim": "^0.18.0",
         "sensio/framework-extra-bundle": "6.2.*",
